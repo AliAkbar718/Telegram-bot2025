@@ -1,7 +1,7 @@
 import telebot
 from pyexpat.errors import messages
 from telebot import types
-from telebot.types import (InlineKeyboardMarkup, InlineKeyboardButton, ReplyKeyboardMarkup, KeyboardButton, ReactionTypeEmoji)
+from telebot.types import (InlineKeyboardMarkup, InlineKeyboardButton, ReplyKeyboardMarkup, KeyboardButton)
 import time
 import datetime
 import platform
@@ -582,8 +582,6 @@ def handle_all_messages(message):
     elif text == 'بات':
       bot.send_message(chat_id, f'جان @{message.from_user.username} مه ره کار داشتی؟\n\n 🔸 برای اطلاع داشتن از مه قابلیت کلمه <b> «لیست» </b> ره راهی هاکان', parse_mode="HTML")
 
-    elif text == 'کیر':
-        bot.set_message_reaction(chat_id=chat_id, message_id=message.message_id, reaction=[types.ReactionTypeEmoji(emoji='🖕')])
 
 
     # حذف لینک با اخطار
