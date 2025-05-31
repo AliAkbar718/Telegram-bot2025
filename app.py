@@ -16,7 +16,6 @@ from googletrans import Translator
 
 
 TOKEN = '7579645804:AAHt5O6hHdXtdigsQQ-WMGiIm7cJexySTVc'
-CHANNEL_USERNAME = '@rap_family1' 
 bot = telebot.TeleBot(TOKEN)
 app = Flask(__name__)
 
