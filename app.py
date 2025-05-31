@@ -22,6 +22,17 @@ bot = telebot.TeleBot(TOKEN)
 app = Flask(__name__)
 
 
+@app.route('/')
+def home():
+    return 'ربات فعال است ✅'
+
+@app.route('/webhook', methods=['POST'])
+def webhook():
+    if request.headers.get('content-type') == 'application/json':
+        update = telebot.types.Update.de_json(request.data.decode('utf-8'))
+        bot.process_new_updates([update])
+        return 'ok', 200
+
 translator = Translator()
 user_translation_mode = {}
 
@@ -676,5 +687,5 @@ def webhook():
 
 
 
-if __name__ == "main":
+if __name__ == "__main__":
     app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 10000)))        
