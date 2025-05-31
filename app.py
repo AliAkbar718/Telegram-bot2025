@@ -449,9 +449,9 @@ def translate_handler(m):
     user_id = m.from_user.id
     user_translation_mode[user_id] = True
     bot.send_message(m.chat.id, "📝 لطفاً متنی که می‌خوای ترجمه کنم رو ارسال کن")
-    bot.register_next_step_handler(m, handle_messages)
+    bot.register_next_step_handler(m, handle_messages2)
     
-def handle_messages(m):
+def handle_messages2(m):
     user_id = m.from_user.id
     text = m.text
     
