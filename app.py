@@ -20,12 +20,6 @@ CHANNEL_USERNAME = '@rap_family1'
 bot = telebot.TeleBot(TOKEN)
 app = Flask(__name__)
 
-WEBHOOK_SECRET_PATH = '/webhook'
-WEBHOOK_URL = f'https://telegram-bot2025-tnxf.onrender.com{WEBHOOK_SECRET_PATH}'
-
-bot.remove_webhook()
-bot.set_webhook(url=WEBHOOK_URL)
-
 
 translator = Translator()
 user_translation_mode = {}
@@ -667,14 +661,23 @@ def handle_left_member(message):
     bot.reply_to(message, "به سلامت👋")
 
 
+# روت اصلی برای بررسی وضعیت سرور
+@app.route('/')
+def home():
+    return 'ربات تلگرام فعال است!'
 
+# اگر وب‌هوک داری، مسیر مربوط به آن را تعریف کن
 @app.route('/webhook', methods=['POST'])
 def webhook():
-    update = types.Update.de_json(request.get_json(force=True))  # بدون bot
-    bot.process_new_updates([update])
-    return 'OK', 200
+    data = request.get_json()
+    print("پیام دریافتی:", data)
+    # اینجا می‌تونی پردازش پیام‌ها رو انجام بدی
+    return 'ok'
 
 
 
-if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 10000)))        
+# اجرای سرور
+if __name__ == '__main__':
+    import os
+    port = int(os.environ.get('PORT', 5000))  # پورت مناسب برای Render
+    app.run(host='0.0.0.0', port=port)
