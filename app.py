@@ -674,4 +674,7 @@ def webhook():
         bot.process_new_updates([update])
         return 'ok', 200
 
-        
+
+
+if __name__ == "main":
+    app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 10000)))        
