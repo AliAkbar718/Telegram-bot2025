@@ -15,23 +15,17 @@ from googletrans import Translator
 
 
 
-
 TOKEN = '7579645804:AAHt5O6hHdXtdigsQQ-WMGiIm7cJexySTVc'
 CHANNEL_USERNAME = '@rap_family1' 
 bot = telebot.TeleBot(TOKEN)
 app = Flask(__name__)
 
+WEBHOOK_URL = 'https://telegram-bot2025-tnxf.onrender.com'
+bot.remove_webhook()
+bot.set_webhook(url=WEBHOOK_URL)
 
-@app.route('/')
-def home():
-    return 'ربات فعال است ✅'
+WEBHOOK_SECRET_PATH = '/webhook'  
 
-@app.route('/webhook', methods=['POST'])
-def webhook():
-    if request.headers.get('content-type') == 'application/json':
-        update = telebot.types.Update.de_json(request.data.decode('utf-8'))
-        bot.process_new_updates([update])
-        return 'ok', 200
 
 translator = Translator()
 user_translation_mode = {}
@@ -672,6 +666,18 @@ def welcome_new_user(message):
 def handle_left_member(message):
     bot.reply_to(message, "به سلامت👋")
 
+
+
+@app.route('/')
+def home():
+    return 'ربات فعال است ✅'
+
+@app.route('/webhook', methods=['POST'])
+def webhook():
+    if request.headers.get('content-type') == 'application/json':
+        update = telebot.types.Update.de_json(request.data.decode('utf-8'))
+        bot.process_new_updates([update])
+        return 'ok', 200
 
 
 
