@@ -670,8 +670,8 @@ def handle_left_member(message):
 
 @app.route(WEBHOOK_SECRET_PATH, methods=['POST'])
 def webhook():
-    # دریافت پیام‌های تلگرام
-    update = types.Update.de_json(request.get_json(force=True), bot)
+    json_str = request.get_json(force=True)
+    update = types.Update.de_json(json_str)
     bot.process_new_updates([update])
     return 'OK', 200
 
