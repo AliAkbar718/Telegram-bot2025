@@ -668,10 +668,9 @@ def handle_left_member(message):
 
 
 
-@app.route(WEBHOOK_SECRET_PATH, methods=['POST'])
+@app.route('/webhook', methods=['POST'])
 def webhook():
-    json_str = request.get_json(force=True)
-    update = types.Update.de_json(json_str)
+    update = types.Update.de_json(request.get_json(force=True))  # بدون bot
     bot.process_new_updates([update])
     return 'OK', 200
 
