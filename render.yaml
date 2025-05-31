@@ -1,6 +1,6 @@
 services:
   - type: web
-    name: telegram-flask-bot
+    name: Telegram-bot2025
     env: python
     buildCommand: pip install -r requirements.txt
     startCommand: gunicorn app:app
