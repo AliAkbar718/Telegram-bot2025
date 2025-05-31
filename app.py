@@ -14,17 +14,15 @@ import pytz
 from googletrans import Translator
 
 
+translator = Translator()
+user_translation_mode = {}
+
 
 TOKEN = '7579645804:AAHt5O6hHdXtdigsQQ-WMGiIm7cJexySTVc'
 bot = telebot.TeleBot(TOKEN)
 app = Flask(__name__)
 
 
-translator = Translator()
-user_translation_mode = {}
-
-
-        
  
 farsi_to_cuneiform = {
     'ا': '𐎠', 'آ': '𐎠', 'ب': '𐎲', 'پ': '𐎱', 'ت': '𐎫', 'ث': '𐎰', 'تو': '𐎬', 'طو': '𐎬', 'ج': '𐎢', 'جی': '𐎪', 'چ': '𐎨', 'ح': '𐏃', 'خ': '𐎧',
